@@ -1,176 +1,87 @@
 /**
- * BY-Health Official Website
+ * BY-Health Front-end Team (https://www.by-health.com/)
  *
  * Copyright © 2016-2017 By-Health Co Ltd. All rights reserved.
  */
 /* eslint-disable class-methods-use-this */
 
+import 'whatwg-fetch';
 import extend from 'extend';
 import { stringify } from 'query-string';
+import compose from './compose';
+import { isAbsoluteUrl } from './utils';
 
 /**
- * Request - A fetch api enhanced.
+ * Enhanced Fetch Api
  */
 class Request {
+  static defaults = {
+    baseUrl: '',
+    method: 'GET',
+    headers: {},
+    params: {},
+  }
 
-  /**
-   * Global configs
-   */
-	configs = {
-		baseUrl: '',
-		type: 'form',
-		headers: {},
-		crossDomain: false,
-		middlewares: []
-	};
+  constructor(options, middlewares) {
+    this.options = extend(true, {}, Request.defaults, options);
+    this.middlewares = [...middlewares].reverse();
+  }
 
-  /**
-   * Create request instance
-   *
-   * @param {object} configs
-   */
-	constructor(configs) {
-		this.configs = extend(true, {}, this.configs, configs);
-	}
+  use(fn) {
+    if (typeof fn !== 'function') {
+      throw new TypeError('Middleware must be a function!');
+    }
 
-  /**
-   * Content-Type
-   */
-	contentType(type) {
-		switch (type) {
-			case 'form':
-				return { 'Content-Type': 'application/x-www-form-urlencoded' };
-			case 'json':
-				return { 'Content-Type': 'application/json' };
-			default:
-				return {};
-		}
-	}
+    this.middlewares.unshift(fn);
+  }
 
-  /**
-   * FormData serialize
-   */
-	serialize(type, payload) {
-		if (payload === undefined || payload === null || typeof payload === 'string') {
-			return payload;
-		}
+  createContext(url, options) {
+    const context = { url };
+    extend(true, context, this.options, options);
+    return context;
+  }
 
-		switch (type) {
-			case 'form':
-				return stringify(payload);
-			case 'json':
-				return JSON.stringify(payload);
-			default:
-				return payload;
-		}
-	}
+  applyFetch({ url, params, baseUrl, ...options }) {
+    if (typeof url !== 'string') {
+      throw new TypeError(`Parameter 'url' must be a string, not ${typeof url}`);
+    }
 
-  /**
-   * Is http url
-   *
-   * @param {string} url
-   * @returns {boolean}
-   */
-	isHttp(url) {
-		return /^(http(s)?:)?\/\//.test(url);
-	}
+    const _baseUrl = isAbsoluteUrl(url) ? '' : baseUrl; // eslint-disable-line
+    const queryString = stringify(params);
+    const concatSymbol = url.indexOf('?') > -1 ? '&' : '?';
 
-  /**
-   * Send request
-   *
-   * @param {string} method
-   * @param {string} url
-   * @param {object} options
-   */
-	request(method = 'GET', url = '', options = {}) {
-		const opts = extend(true, {}, this.configs, options);
+    return fetch(`${_baseUrl}${url}${queryString && (concatSymbol + queryString)}`, options);
+  }
 
-		const baseUrl = this.isHttp(url) ? '' : opts.baseUrl;
-		const queryString = stringify(opts.params);
-		const concatSymbol = url.indexOf('?') > -1 ? '&' : '?';
-		const uri = `${baseUrl}${url}${queryString && (concatSymbol + queryString)}`;
+  fetch(url, options) {
+    const fn = compose(this.middlewares);
+    const context = this.createContext(url, options);
+    return fn(context, this.applyFetch);
+  }
 
-		const defered = fetch(uri, {
-			method,
-			headers: {
-				...opts.headers,
-				...this.contentType(opts.type)
-			},
-			credentials: opts.crossDomain ? 'include' : 'same-origin',
-			mode: opts.crossDomain ? 'cors' : 'same-origin',
-			body: this.serialize(opts.type, opts.payload)
-		});
+  head(url, options) {
+    return this.fetch(url, { ...options, method: 'HEAD' });
+  }
 
-		return opts.middlewares.reduce((chain, fn) => fn(chain), defered);
-	}
+  options(url, options) {
+    return this.fetch(url, { ...options, method: 'OPTIONS' });
+  }
 
-  /**
-   * Send GET request
-   *
-   * @param {string} url
-   * @param {object} params
-   * @param {object} options
-   */
-	get(url, params, options) {
-		return this.request('GET', url, {
-			...options,
-			params
-		});
-	}
+  get(url, options) {
+    return this.fetch(url, { ...options, method: 'GET' });
+  }
 
-  /**
-   * Send POST request
-   *
-   * @param {string} url
-   * @param {object} payload
-   * @param {object} options
-   */
-	post(url, payload, options) {
-		return this.request('POST', url, {
-			...options,
-			payload
-		});
-	}
+  delete(url, options) {
+    return this.fetch(url, { ...options, method: 'DELETE' });
+  }
 
-  /**
-   * Send PUT request
-   *
-   * @param {string} url
-   * @param {object} payload
-   * @param {object} options
-   */
-	put(url, payload, options) {
-		return this.request('PUT', url, {
-			...options,
-			payload
-		});
-	}
+  post(url, payload, options) {
+    return this.fetch(url, { ...options, method: 'POST', body: payload });
+  }
 
-  /**
-   * Send PATCH request
-   *
-   * @param {string} url
-   * @param {object} payload
-   * @param {object} options
-   */
-	patch(url, payload, options) {
-		return this.request('PATCH', url, {
-			...options,
-			payload
-		});
-	}
-
-  /**
-   * Send DELETE request
-   *
-   * @param {string} url
-   * @param {object} options
-   */
-	delete(url, options) {
-		return this.request('DELETE', url, {
-			...options
-		});
-	}
+  put(url, payload, options) {
+    return this.fetch(url, { ...options, method: 'PUT', body: payload });
+  }
 }
 
 export default Request;

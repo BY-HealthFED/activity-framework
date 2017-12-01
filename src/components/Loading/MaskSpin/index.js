@@ -13,11 +13,10 @@ class MaskSpin extends Component {
 		});
 		// const icon = this.props.icon === undefined ? <img src={Loading} /> : this.props.icon;
 		return (
-      <div className={eleClass}>
-        <div className={s.mask}>
-		</div>
-		<Spin spinBgColor="rgba(0, 0, 0, 0.6)" spinColor="orange" spinHeight="0.2rem" spinWidth="0.2rem" />
-      </div>
+			<div className={eleClass}>
+				<div className={s.mask} />
+				<Spin spinBgColor="rgba(0, 0, 0, 0.6)" spinColor="orange" spinHeight="0.2rem" spinWidth="0.2rem" />
+			</div>
 		);
 	}
 }

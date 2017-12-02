@@ -6,5 +6,5 @@
 /* eslint-disable import/prefer-default-export */
 
 export function isAbsoluteUrl(url) {
-  return /^[a-z][a-z0-9+.-]*:/.test(url);
+	return /^[a-z][a-z0-9+.-]*:/.test(url);
 }

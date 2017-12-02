@@ -12,13 +12,14 @@ import * as middleware from './middleware';
 export { Request };
 export { middleware };
 export default new Request({
-  baseUrl: API_BASE,
-  type: 'form',
-  credentials: 'same-origin',
-  mode: 'same-origin',
-  loading: true,
+	baseUrl: API_BASE,
+	type: 'form',
+	credentials: 'same-origin',
+	mode: 'same-origin',
+	loading: true
 }, [
-  middleware.timeout,
-  middleware.postForm,
-  middleware.jsonResult,
+	middleware.timeout,
+	middleware.postForm,
+	// 根据具体的接口结构来定制中间件
+	middleware.jsonResult
 ]);

@@ -4,8 +4,8 @@ import '~/style/global.common';
 import history from '~/core/history';
 
 import HeaderBar from './HeaderBar';
-import Home from './home';
-import Profile from './profile';
+import Home from '~/containers/home';
+import Profile from '~/containers/profile';
 
 export default class App extends Component {
 	/** Gets fired when the route changes.

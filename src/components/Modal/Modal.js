@@ -2,6 +2,8 @@ import { h, Component } from 'preact';
 import ReactModal from 'react-modal';
 import s from './Modal.scss';
 
+ReactModal.setAppElement(document.body);
+
 const style = {
 	overlay : {
 		position          : 'absolute',
@@ -24,7 +26,7 @@ const style = {
 		background                 : '#fff',
 		overflow                   : 'auto',
 		WebkitOverflowScrolling    : 'touch',
-		borderRadius               : '1rem',
+		borderRadius               : '0.4rem',
 		outline                    : 'none',
 		padding                    : '0',
 		top: '50%',
@@ -44,7 +46,7 @@ export default class Modal extends Component {
 				{...this.props}
 				className={s.warp}
 			>
-				{onRequestClose ? <button className={s.close} onClick={onRequestClose}>关闭</button> : null}
+				{onRequestClose ? <button className={s.close} onClick={onRequestClose}>	&times;</button> : null}
 				{children}
 			</ReactModal>
 		);

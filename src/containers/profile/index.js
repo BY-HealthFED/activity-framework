@@ -48,7 +48,10 @@ export default class Profile extends Component {
 	}
 
 	showLoading = () => {
-
+		Loading.show();
+		setTimeout(() => {
+			Loading.hide();
+		}, 3000);
 	}
 
 	// Note: `user` comes from the URL, courtesy of our router
@@ -61,17 +64,17 @@ export default class Profile extends Component {
 				<div>Current time: {time}</div>
 				<div>Profile route mounted {count} times.</div>
 				<br /><br />
-				<button className="pd1" onClick={this.handleOpenModal}>OpenModal</button>
-				<br />
-				<button className="pd1" onClick={this.showLoading}>Loading</button>
+				<button className="pd1 bg-gray-light" onClick={this.handleOpenModal}>OpenModal</button>
+				<br /><br />
+				<button className="pd1 bg-gray-light" onClick={this.showLoading}>Loading</button>
 				<Modal
 					isOpen={this.state.isOpen}
 					contentLabel="Modal"
+					onRequestClose={this.handleHideModal}
 				>
 					<div className="pd1 al-c">
 						<h2> Modal </h2>
 						<br />
-						<button className="pd1" onClick={this.handleHideModal}>close</button>
 					</div>
 				</Modal>
 			</div>

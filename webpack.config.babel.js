@@ -30,7 +30,7 @@ function getLessVariables() {
 
 module.exports = {
 	context: path.resolve(__dirname, "src"),
-	entry: './index.js',
+	entry: ['./core/polyfill.js', './index.js'],
 
 	output: {
 		path: path.resolve(__dirname, "build"),
@@ -64,14 +64,14 @@ module.exports = {
 				use: 'source-map-loader'
 			},
 			{
-				test: /\.jsx?$/,
+				test: /\.(jsx|js)?$/,
 				exclude: /node_modules/,
 				use: 'babel-loader'
 			},
 			{
 				// Transform our own .(scss|css) files with PostCSS and CSS-modules
 				test: /\.(scss|css)$/,
-				include: [path.resolve(__dirname, 'src/components')],
+				include: [path.resolve(__dirname, 'src/components'), path.resolve(__dirname, 'src/containers')],
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: [
@@ -103,7 +103,7 @@ module.exports = {
 			},
 			{
 				test: /\.(scss|css)$/,
-				exclude: [path.resolve(__dirname, 'src/components')],
+				exclude: [path.resolve(__dirname, 'src/components'), path.resolve(__dirname, 'src/containers')],
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: [
@@ -130,7 +130,7 @@ module.exports = {
 			// Transform our own .less files with PostCSS and CSS-modules
 			{
 				test: /\.less$/,
-				include: [path.resolve(__dirname, 'src/components')],
+				include: [path.resolve(__dirname, 'src/components'), path.resolve(__dirname, 'src/containers')],
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: [
@@ -146,7 +146,7 @@ module.exports = {
 			},
 			{
 				test: /\.less$/,
-				exclude: [path.resolve(__dirname, 'src/components')],
+				exclude: [path.resolve(__dirname, 'src/components'), path.resolve(__dirname, 'src/containers')],
 				use: ExtractTextPlugin.extract({
 					fallback: 'style-loader',
 					use: ['css-loader', 'less-loader']
@@ -264,12 +264,10 @@ module.exports = {
 		open: true,
 		openPage: '',
 		proxy: {
-			// OPTIONAL: proxy configuration:
-			// '/optional-prefix/**': { // path pattern to rewrite
-			//   target: 'http://target-host.com',
-			// 	changeOrigin: true
-			//   pathRewrite: path => path.replace(/^\/[^\/]+\//, '')   // strip first path segment
-			// }
+			'/mf': {
+				target: 'http://wx-test1.by-health.com',
+				changeOrigin: true
+			}
 		}
 	}
 };

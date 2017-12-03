@@ -1,15 +1,22 @@
 import { h, Component } from 'preact';
+
+import { connect } from 'preact-redux';
+import { bindActionCreators } from 'redux';
+import { setRuntimeVariable } from '~/actions/user';
+
 import Loading from '~/components/Loading';
 import { apiTest } from '~/servicer/index.js';
 import less from './less';
 import scss from './scss';
 import css from './css';
-export default class Home extends Component {
+
+class Home extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			provinces: []
+			provinces: [],
+			runtimeVariable: 'this is a runtimeVariable'
 		};
 	}
 
@@ -24,15 +31,25 @@ export default class Home extends Component {
 			Loading.hide();
 			console.log(error);
 		});
+		this.props.setStore({
+			name: 'setRuntimeVariable',
+			value: this.state.runtimeVariable
+		});
 	}
 
+
 	render() {
+		console.log('test redux', this.props);
 		return (
 			<div class={less.home}>
 				<h1 className={scss.title}>Home</h1>
 				<p className={css.paragraph}>This is the Home component.
 					<br /> Copyright &copy; By-Health Co Ltd. All rights reserved.
 					<br /><br /> <a className={scss.link} href="/profile">profile</a>
+				</p>
+				<p className="pdt2">
+					Redux-test setRuntimeVariable is<br />
+					{this.props.setRuntimeVariable}
 				</p>
 				<div className="mgt2 formBox">
 					<div> Development environment agent API to local </div>
@@ -57,3 +74,14 @@ export default class Home extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return state;
+}
+
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({ setStore: setRuntimeVariable}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

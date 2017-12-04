@@ -1,7 +1,7 @@
 {
   "name": "preact-boilerplate",
   "version": "6.0.0",
-  "description": "an activity Cli by preact & webpack",
+  "description": "An activity Cli by preact & webpack",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --progress",
     "start": "serve build -s -c 1",

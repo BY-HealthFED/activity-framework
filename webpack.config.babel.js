@@ -262,7 +262,7 @@ module.exports = {
 		contentBase: './src',
 		historyApiFallback: true,
 		open: true,
-		openPage: '',
+		// openPage: '',
 		proxy: {
 			'/mf': {
 				target: 'http://wx-test1.by-health.com',

@@ -6,9 +6,13 @@ import CopyWebpackPlugin from 'copy-webpack-plugin';
 import OfflinePlugin from 'offline-plugin';
 import path from 'path';
 import fs from 'fs';
-const ENV = process.env.NODE_ENV || 'development';
+
+const isPRD = process.env.NODE_ENV.indexOf('production') !== -1 ? 'production' : null;
+const isUAT = process.env.NODE_ENV.indexOf('uat') !== -1;
+const ENV = isPRD || 'development';
 
 const CSS_MAPS = ENV!=='production';
+
 
 // globVar for less
 function getLessVariables() {
@@ -34,7 +38,7 @@ module.exports = {
 
 	output: {
 		path: path.resolve(__dirname, "build"),
-		publicPath: '/',
+		publicPath: './',
 		filename: 'bundle.js'
 	},
 
@@ -183,7 +187,9 @@ module.exports = {
 			disable: ENV !== 'production'
 		}),
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify(ENV)
+			'process.env.NODE_ENV': JSON.stringify(ENV),
+			'__UAT__': isUAT,
+			'__PRD__': isPRD === 'production' ? true : false
 		}),
 		new HtmlWebpackPlugin({
 			template: './index.ejs',
@@ -191,7 +197,8 @@ module.exports = {
 		}),
 		new CopyWebpackPlugin([
 			{ from: './manifest.json', to: './' },
-			{ from: './favicon.ico', to: './' }
+			{ from: './favicon.ico', to: './' },
+			{ from: './assets', to: './assets' }
 		])
 	]).concat(ENV==='production' ? [
 		new webpack.optimize.UglifyJsPlugin({
@@ -266,6 +273,14 @@ module.exports = {
 		proxy: {
 			'/mf': {
 				target: 'http://wx-test1.by-health.com',
+				changeOrigin: true
+			},
+			'/common': {
+				target: 'http://wx-test.by-health.com',
+				changeOrigin: true
+			},
+			'/annualmeeting': {
+				target: 'http://wx-test.by-health.com',
 				changeOrigin: true
 			}
 		}

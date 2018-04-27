@@ -43,6 +43,7 @@ class Home extends Component {
 		return (
 			<div class={less.home}>
 				<h1 className={scss.title}>Home</h1>
+				<div className={scss.bglogo}><img src={`${__PUBLICKPATH__ || './'}assets/logo.png`}/></div>
 				<p className={css.paragraph}>This is the Home component.
 				<br /> Copyright &copy; By-Health Co Ltd. All rights reserved.
 				<br /><br /> <a className={scss.link} href="/profile">profile</a>

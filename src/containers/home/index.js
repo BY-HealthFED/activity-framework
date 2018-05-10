@@ -49,7 +49,7 @@ class Home extends Component {
 				<br /><br /> <a className={scss.link} href="/profile">profile</a>
 				</p>
 				<p className="pdt2">
-					Redux-test setRuntimeVariable is<br />
+					Redux-test setRuntimeVariable iss<br />
 					{this.props.setRuntimeVariable}
 				</p>
 				<div className="mgt2 formBox">

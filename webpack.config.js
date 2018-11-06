@@ -19,7 +19,7 @@ module.exports = (env, argv) => {
 			path: path.resolve(__dirname, 'build'),
 			publicPath: cdn ? `${cdn}/` : './',
 			filename: isPro ? 'bundle.[hash:6].js' : 'bundle.js',
-			chunkFilename: isPro ? '[name].[hash:6].js' : '[name].js'
+			chunkFilename: isPro ? '[name].[contenthash:6].js' : '[name].js'
 		},
 		resolve: {
 			extensions: ['.jsx', '.js', '.json', '.less', '.scss', '.css'],

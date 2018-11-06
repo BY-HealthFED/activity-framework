@@ -4,7 +4,7 @@ class View extends Component {
 	render() {
 		return (
 			<div>
-				page View
+				page View <br /> We use dynamic importing to separate a chunk
 			</div>
 		);
 	}

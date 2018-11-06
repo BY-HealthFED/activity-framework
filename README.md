@@ -59,6 +59,8 @@ npm run dev
 
 > 当cdn打包时\_\_PUBLICKPATH\_\_则为cdn路径  `http://cdn-yyj.4000916916.com/yourpath`
 
+使用方式参考 `./src/config.js`
+
 
 
 ## script

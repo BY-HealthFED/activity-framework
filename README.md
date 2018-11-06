@@ -91,6 +91,22 @@ prd 打包并查看资源大小，以便合理分割代码
 
 
 
+## 样式处理
+
+框架支持sass打包，需要支持less等自行处理loader
+
+1、公共样式与私有样式分开处理
+
+ 	`./src/style` 下存放公共样式，公共样式不进行模块化处理，可在各组件内部直接引用
+
+​	其他组件的私有样式将进行模块化处理
+
+2、sass变量统一引用
+
+​	`src/style/variables.scss` 存放全局scss变量，这份变量将被其他scss文件自动引入，而无需在各个文件单独`@import`
+
+
+
 ## 代码分割
 
 结合webpack4 的Dynamic Imports 与 react-loadable 结合以组件为单位分割优化你的代码。

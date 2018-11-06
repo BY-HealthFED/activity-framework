@@ -15,6 +15,8 @@ npm run dev
 然后打开http://localhost:8080/查看您的项目。
 准备部署到生产环境时，使用npm run build打包生产。
 
+[demo](https://by-healthfed.github.io/activity-framework)
+
 > 当然这步交由运维打包发布更好，详见[运维发布项目](#deploy)
 
 

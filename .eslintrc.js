@@ -17,7 +17,8 @@ module.exports = {
     },
     "globals": {
         "__UAT__": true,
-        "__PRO__": true
+        "__PRO__": true,
+        "__PUBLICKPATH__": true
     },
     "plugins": [
         "react"

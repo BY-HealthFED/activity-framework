@@ -59,26 +59,26 @@ $primary-dark: get('primary.dark');
 按照大小分为6个级别（-big,-bigger,-biggest,-small,-smaller,-smallest）
 //## Font, base on root screen = 640px  1rem = 24px.
 ***/
-$font: fixpx($ui-perrem * 1); // 31px
-$font-big: fixpx($ui-perrem * 1.16); // 28px
-$font-bigger: fixpx($ui-perrem * 1.25); // 30px
-$font-biggest: fixpx($ui-perrem * 1.333); // 36px
-$font-small: fixpx($ui-perrem * .833); // 20px
-$font-smaller: fixpx($ui-perrem * .75); // 18px
-$font-smallest: fixpx($ui-perrem * .66); // 16px
+$font: fixpx(strip-units($ui-perrem) * 1); 
+$font-big: fixpx(strip-units($ui-perrem) * 1.16); 
+$font-bigger: fixpx(strip-units($ui-perrem) * 1.25); 
+$font-biggest: fixpx(strip-units($ui-perrem) * 1.333); 
+$font-small: fixpx(strip-units($ui-perrem) * .833); 
+$font-smaller: fixpx(strip-units($ui-perrem) * .75); 
+$font-smallest: fixpx(strip-units($ui-perrem) * .66); 
 
 //==borderradius
 /***
 圆角 $radius
 按照大小分为6个级别（-big,-bigger,-biggest,-small,-smaller,-smallest）
 ***/
-$radius: fixpx(19);
-$radius-big: fixpx(35);
-$radius-bigger: fixpx(48);
-$radius-biggest: fixpx(200);
-$radius-small: fixpx(11);
-$radius-smaller: fixpx(8);
-$radius-smallest: fixpx(6);
+$radius: fixpx(strip-units($ui-perrem) * .8);
+$radius-big: fixpx(strip-units($ui-perrem) * 1);
+$radius-bigger: fixpx(strip-units($ui-perrem) * 1.5);
+$radius-biggest: fixpx(strip-units($ui-perrem) * 3);
+$radius-small: fixpx(strip-units($ui-perrem) * .6);
+$radius-smaller: fixpx(strip-units($ui-perrem) * .4);
+$radius-smallest: fixpx(strip-units($ui-perrem) * .2);
 
 
 

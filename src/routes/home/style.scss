@@ -1,7 +1,7 @@
 .root {
     text-align: center;
     img {
-        width: $ui-perrem;
+        width: fixpx(500);
         font-size: $font;
     }
 }

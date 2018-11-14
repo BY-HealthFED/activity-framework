@@ -8,6 +8,10 @@ class Loading {
 		this.component = component;
 		this.container = null;
 		this.counter = 0;
+		this.spinBgColor="rgba(0, 0, 0, 0.6)";
+		this.spinColor="orange";
+		this.spinHeight="0.2rem";
+		this.spinWidth="0.2rem";
 	}
 
 	show = () => {
@@ -38,7 +42,14 @@ class Loading {
 
 			ReactDOM.render(h(
 				this.component,
-				{ show: true, fixed: true }
+				{
+					show: true,
+					fixed: true,
+					spinBgColor: this.spinBgColor,
+					spinColor: this.spinColor,
+					spinHeight: this.spinHeight,
+					spinWidth: this.spinWidth
+				}
 			), this.container);
 		}
 	}

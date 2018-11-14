@@ -5,7 +5,11 @@ import { connect } from 'preact-redux';
 import { bindActionCreators } from 'redux';
 import { setRuntimeVariable } from '~/actions';
 import Loadable from "react-loadable";
-
+import Loading from '~/components/Loading';
+Loading.spinBgColor = 'rgba(255, 255, 0, 0.2)';
+Loading.spinColor = 'green';
+Loading.spinHeight = '0.4rem';
+Loading.show();
 import Home from '~/routes/home';
 import List from '~/routes/list';
 

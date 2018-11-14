@@ -3,6 +3,7 @@ import { Provider } from 'preact-redux';
 import { createStore } from 'redux';
 import reducer from './reducers';
 import './style/common.scss';
+import './core/setRem';
 
 const INITIAL = {};
 const store = createStore( reducer, INITIAL, typeof window.devToolsExtension==='function' ? window.devToolsExtension() : undefined);

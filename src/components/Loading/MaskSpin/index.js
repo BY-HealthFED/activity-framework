@@ -15,7 +15,7 @@ class MaskSpin extends Component {
 		return (
 			<div className={eleClass}>
 				<div className={s.mask} />
-				<Spin spinBgColor="rgba(0, 0, 0, 0.6)" spinColor="orange" spinHeight="0.2rem" spinWidth="0.2rem" />
+				<Spin {...this.props} />
 			</div>
 		);
 	}

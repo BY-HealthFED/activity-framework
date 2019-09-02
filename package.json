@@ -1,5 +1,5 @@
 {
-  "name": "preact-webpack4",
+  "name": "activityframework",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -9,11 +9,12 @@
     "dev": "webpack-dev-server --mode=development",
     "report": "rm -rf ./build && webpack --mode=production --report=true"
   },
-  "author": "",
+  "author": "eightfeet",
   "license": "ISC",
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "classnames": "^2.2.6",
+    "core-js": "^3.2.1",
     "es6-promise": "^4.2.5",
     "history": "^4.7.2",
     "mime": "^2.3.1",
@@ -58,5 +59,12 @@
     "url-loader": "^1.1.2",
     "webpack": "^4.23.1",
     "webpack-bundle-analyzer": "^3.0.3"
-  }
+  },
+  "browserslist": [
+    "Android 2.3",
+    "Android >= 4",
+    "Chrome >= 29",
+    "iOS >= 6",
+    "Safari >= 7.1"
+  ]
 }

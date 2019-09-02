@@ -1,5 +1,5 @@
-import 'core-js/fn/object/assign';
-import 'core-js/fn/map';
-import 'core-js/fn/set';
+import 'core-js/features/object/assign';
+import 'core-js/features/map';
+import 'core-js/features/set';
 import 'es6-promise/auto';
 import 'whatwg-fetch';

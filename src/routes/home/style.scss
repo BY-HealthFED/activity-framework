@@ -3,4 +3,30 @@
     img {
         width: fixpx(500);
     }
+
+    .redux {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #aaa;
+        margin-bottom: 3rem;
+    }
+
+    .count {
+        font-size: 5rem;
+        font-weight: bolder;
+    }
+
+    .suffix {
+        padding-bottom: 2rem;
+        color: #999;
+    }
+
+    .logo {
+        img {
+            width: 8rem;
+        }
+    }
+
+    .hooks {
+        padding-bottom: 1.5rem;
+    }
 }

@@ -18,16 +18,14 @@ const View = Loadable({
 });
 
 class App extends Component {
-
-	handleMenu = path => () => {
-		history.push(path);
-	}
-
 	componentDidMount() {
 		this.props.setStore({
 			redux: 'from redux RUNTIME'
 		});
-		console.log(this.props);
+	}
+
+	handleMenu = path => () => {
+		history.push(path);
 	}
 
 	handleCount = () => {
@@ -46,7 +44,7 @@ class App extends Component {
 						<a onClick={this.handleMenu('/view')}>View</a>
 					</nav>
 				</div>
-				<div style="padding:1rem; text-align:center" onClick={this.handleCount}>handlerRedux</div>
+				<div style="padding:1rem; text-align:center" onClick={this.handleCount}>handleRedux</div>
 				<Router history={history} onChange={this.handleRoute}>
 					<Home path="/" redux={`this.props.redux ${this.props.count}`} />
 					<List path="/list" />
@@ -58,7 +56,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-	console.log('state', state);
 	return state || {};
 }
 

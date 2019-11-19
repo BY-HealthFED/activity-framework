@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { Router } from 'preact-router';
 import history from '~/core/history';
-import { connect } from 'preact-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setRuntimeVariable } from '~/actions';
 import Loadable from "react-loadable";
@@ -24,9 +24,6 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		this.props.setStore({
-			redux: 'from redux RUNTIME'
-		});
 	}
 	
 	render() {
@@ -49,13 +46,13 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return state;
-}
+// function mapStateToProps(state) {
+// 	return state;
+// }
 
 
-function mapDispatchToProps(dispatch){
-	return bindActionCreators({ setStore: setRuntimeVariable }, dispatch);
-}
+// function mapDispatchToProps(dispatch){
+// 	return bindActionCreators({ setStore: setRuntimeVariable }, dispatch);
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

@@ -33,8 +33,8 @@ module.exports = (env, argv) => {
 				style: path.resolve(__dirname, 'src/style'),
 				core: path.resolve(__dirname, 'src/core'),
 				'~': path.resolve(__dirname, 'src'), // root
-				react: 'preact-compat',
-				'react-dom': 'preact-compat'
+				react: 'preact/compat',
+				'react-dom': 'preact/compat'
 			}
 		},
 		optimization: {
@@ -72,12 +72,10 @@ module.exports = (env, argv) => {
 						},
 						compress: {
 							unsafe_comps: true,
-							properties: true,
 							keep_fargs: false,
 							pure_getters: true,
 							collapse_vars: true,
 							unsafe: true,
-							warnings: false,
 							sequences: true,
 							dead_code: true,
 							drop_debugger: true,

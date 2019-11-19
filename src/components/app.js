@@ -24,6 +24,16 @@ class App extends Component {
 	}
 
 	componentDidMount() {
+		this.props.setStore({
+			redux: 'from redux RUNTIME'
+		});
+		console.log(this.props);
+	}
+
+	handleCount = () => {
+		this.props.setStore({
+			count: this.props.count + 1
+		});
 	}
 	
 	render() {
@@ -36,8 +46,9 @@ class App extends Component {
 						<a onClick={this.handleMenu('/view')}>View</a>
 					</nav>
 				</div>
+				<div style="padding:1rem; text-align:center" onClick={this.handleCount}>handlerRedux</div>
 				<Router history={history} onChange={this.handleRoute}>
-					<Home path="/" redux={this.props.redux} />
+					<Home path="/" redux={`this.props.redux ${this.props.count}`} />
 					<List path="/list" />
 					<View path="/view" />
 				</Router>
@@ -46,13 +57,14 @@ class App extends Component {
 	}
 }
 
-// function mapStateToProps(state) {
-// 	return state;
-// }
+function mapStateToProps(state) {
+	console.log('state', state);
+	return state || {};
+}
 
 
-// function mapDispatchToProps(dispatch){
-// 	return bindActionCreators({ setStore: setRuntimeVariable }, dispatch);
-// }
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({ setStore: setRuntimeVariable }, dispatch);
+}
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);

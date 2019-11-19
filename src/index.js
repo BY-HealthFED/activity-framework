@@ -15,7 +15,7 @@ window.onresize = () => {
 };
 let root;
 function init() {
-	let App = require('./components/app').default;
+	let App = require('./components/App').default;
 	root = render(
 		<Provider store={store}>
 			<App />

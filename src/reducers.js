@@ -1,4 +1,6 @@
 const defaultState = {
+	redux: '',
+	count: 0
 };
 const reducer = (state, action) => {
 	switch (action.type) {

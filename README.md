@@ -1,8 +1,18 @@
 ## activity-framework
 
+#### 升级到 preact10.X
+
+**因为preact-cli创建的preact项目无法像Create-react-app创建的项目一样通过npm run eject来高度自定义配置，因此升级activity-framework项目的preact到10.x以更灵活定制项目和支持新的功能特性**
+
+#### 其他变更
+
+1. remove preact-compat，preact已将preact-compat移植到内核中，无需单独引用
+2. 升级preact-router到3.x
+3. 移除preact-redux，用react-redux替代，preact-redux尚未更新目前还不支持preact10.x
+
+
+
 用于快速创建活动的preact框架，不包含测试模块。
-
-
 
 ## 快速概述
 
@@ -12,7 +22,7 @@ npm i
 npm run dev
 ```
 
-然后打开http://localhost:8080/查看您的项目。
+然后打开http://localhost:8090/查看您的项目。
 准备部署到生产环境时，使用npm run build打包生产。
 
 [demo](https://by-healthfed.github.io/activity-framework)

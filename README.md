@@ -9,6 +9,7 @@
 1. remove preact-compat，preact已将preact-compat移植到内核中，无需单独引用
 2. 升级preact-router到3.x
 3. 移除preact-redux，用react-redux替代，preact-redux尚未更新目前还不支持preact10.x
+4. 8.x版本已移至preact-8.x分支
 
 
 

@@ -5,21 +5,22 @@ import reducer from "./reducers";
 import "./style/common.scss";
 import "./core/setRem";
 export const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	reducer,
+	(window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
+	(window as any).__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 /**
  * 初始化项目
  */
 function init() {
-  let App = require("./components/App").default;
-  render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById("root")
-  );
+	let App = require("./components/App").default;
+	render(
+		<Provider store={store}>
+			<App />
+		</Provider>,
+		document.getElementById("root")
+	);
 }
 
-init()
+init();

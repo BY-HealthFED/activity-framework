@@ -24,7 +24,7 @@ module.exports = (env, argv) => {
 	
 	return {
 		context: path.resolve(__dirname, 'src'),
-		entry: ['./core/polyfill.js', './index.js'],
+		entry: ['./core/polyfill.js', './index.tsx'],
 		output: {
 			path: path.resolve(__dirname, 'build'),
 			publicPath: process.env.PUBLIC_PATH,

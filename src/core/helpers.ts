@@ -2,7 +2,7 @@
  * 将页面像素值转换为rem单位
  * @param {String} px 像素值
  */
-export function px2rem (px) {
+export function px2rem (px: number) {
 	// const baseFont = window.innerWidth/24;
 	return px/31.25;
 }
@@ -17,7 +17,7 @@ export function isWeChat() {
 	const ua = window.navigator.userAgent.toLowerCase();
 	if (ua.indexOf('micromessenger') === -1) {
 		return (1);
-	} else if (window.__wxjs_environment === 'miniprogram') {
+	} else if ((window as any).__wxjs_environment === 'miniprogram') {
 		return (3);
 	}
 	return (2);
@@ -29,13 +29,13 @@ export function isWeChat() {
  * @param {number} times 次数
  * @param {string} tag 标签
  */
-export const localStorageCounter = (times, tag) => {
+export const localStorageCounter = (times: number, tag: string) => {
 	if (!times || !tag) {
 		throw 'times计数次数, tag计数标签为必填参数';
 	}
 	const currentTimes = parseInt(window.localStorage.getItem(tag), 10) || 0;
 	if (currentTimes < times) {
-		window.localStorage.setItem(tag, currentTimes + 1);
+		window.localStorage.setItem(tag, (currentTimes + 1).toString());
 		return currentTimes;
 	}
 	window.localStorage.removeItem(tag);
@@ -45,9 +45,9 @@ export const localStorageCounter = (times, tag) => {
 
 /**
  * @exports
- * @param { String } url url js脚本地址
+ * @param { String } url url js脚本url地址
  */
-export const  urlLoader = (url) => {
+export const  urlLoader = (url: string) => {
 	return new Promise(((resolve, reject) => {
 		if (!url) {
 			reject('缺少url参数');
@@ -55,9 +55,9 @@ export const  urlLoader = (url) => {
 		}
 		let dom = document.createElement("script");
 		dom.setAttribute("src", url);
-		dom.onload = dom.onreadystatechange = function () {
+		dom.onload = dom['onreadystatechange'] = function () {
 			if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
-				dom.onload = dom.onreadystatechange = null;
+				dom.onload = dom['onreadystatechange'] = null;
 				setTimeout(() => resolve(), 500);
 			}
 		};
@@ -70,10 +70,10 @@ export const  urlLoader = (url) => {
 
 /**
  * 检测对象类型
- * @param {Any} Obj 检测对象
+ * @param {Any} Obj 任何检测对象
  * @param {String} type 预判类型
  */
-export const isType = (Obj, type) => {
+export const isType = (Obj: any, type: string) => {
 	if (Object.prototype.toString.apply(Obj) === `[object ${type}]`) {
 		return true;
 	}

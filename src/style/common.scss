@@ -1,0 +1,56 @@
+@import "./variables.scss";
+
+// your global style;
+
+body {
+    background-color: $white;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#root {
+    background-color: #fff;
+    position: relative;
+    min-height: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.clearfix:after,.clearfix:before{
+    content: "";
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+.clearfix{
+    *zoom: 1;
+}
+
+#addresspick {
+    position: relative;
+    z-index: 10000;
+}
+
+.maincolor {
+    color: $maincolor
+}
+
+.bolder{
+    font-weight: bolder;
+}
+
+.button {
+    background-color: rgb(66, 186, 126);
+    box-shadow: 0 fixpx(7) fixpx(7) 0 rgba(82, 198, 141, 0.55);
+    width: fixpx(446);
+    height: fixpx(78);
+}
+  

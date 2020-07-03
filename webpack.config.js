@@ -32,7 +32,7 @@ module.exports = (env, argv) => {
 			chunkFilename: isPro ? '[name].[contenthash:6].js' : '[name].js'
 		},
 		resolve: {
-			extensions: ['.jsx', '.js', '.json', '.less', '.scss', '.css'],
+			extensions: ['.ts', '.tsx', '.jsx', '.js', '.json', '.less', '.scss', '.css'],
 			modules: [
 				path.resolve(__dirname, 'src/lib'),
 				path.resolve(__dirname, 'node_modules'),
@@ -89,6 +89,11 @@ module.exports = (env, argv) => {
 		},
 		module: {
 			rules: [
+				{
+					test: /\.tsx?$/,
+					exclude: /node_modules/,
+					loaders: ['ts-loader']
+				},
 				{
 					test: /\.(jsx|js)?$/,
 					exclude: path.resolve(__dirname, 'src'),

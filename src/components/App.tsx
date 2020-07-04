@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setRuntimeVariable } from "~/actions";
 import history from "~/core/history";
+import { isType } from "~/core/helpers";
+import runtime from "~/core/runtime";
 
 export interface PropsHome {
   path: string;
@@ -20,13 +22,21 @@ const Home = ({ path }: PropsHome) => <div>home</div>;
 
 const Result = ({ path }: PropsResult) => <div>result</div>;
 
-export interface Props {
-}
-export interface State {
-	
-}
+export interface Props extends runtime {}
+
+export interface State {}
 
 class App extends Component<Props, State> {
+  constructor(props) {
+    super(props);
+    this.props.chick;
+  }
+  async componentDidMount() {
+    await this.props.setStore({
+		test:123
+	});
+    console.log(this.props.test);
+  }
   render() {
     return (
       <Router history={history}>

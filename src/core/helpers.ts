@@ -58,7 +58,7 @@ export const  urlLoader = (url: string) => {
 		dom.onload = dom['onreadystatechange'] = function () {
 			if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete") {
 				dom.onload = dom['onreadystatechange'] = null;
-				setTimeout(() => resolve(), 500);
+				setTimeout(() => resolve(), 200);
 			}
 		};
 		dom.onerror = function () {
@@ -73,7 +73,7 @@ export const  urlLoader = (url: string) => {
  * @param {Any} Obj 任何检测对象
  * @param {String} type 预判类型
  */
-export const isType = (Obj: any, type: string) => {
+export const isType = (Obj: any, type: string):boolean => {
 	if (Object.prototype.toString.apply(Obj) === `[object ${type}]`) {
 		return true;
 	}

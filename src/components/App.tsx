@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { setRuntimeVariable } from "~/actions";
 import history from "~/core/history";
 import { isType } from "~/core/helpers";
-import Runtimes from "~/core/Runtimes";
+import RuntimeDeclare from "~/core/Runtime.d";
 
 interface PropsHome {
   path: string;
@@ -22,7 +22,7 @@ const Home = ({ path }: PropsHome) => <div>home</div>;
 
 const Result = ({ path }: PropsResult) => <div>result</div>;
 
-export interface Props extends Runtimes {}
+export interface Props extends RuntimeDeclare {}
 
 export interface State {}
 
@@ -33,11 +33,11 @@ class App extends Component<Props, State> {
   async componentDidMount() {
     await this.props.setStore({
       member: {
-        firstName: '11111',
-        lastName: '22222'
+        firstName: 'My first name',
+        secondName: 'My second name'
       }
     });
-    console.log(this.props.member.lastName?.slice(0, 2));
+    console.log(this.props.member);
   }
   render() {
     return (

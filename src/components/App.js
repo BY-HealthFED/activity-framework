@@ -6,8 +6,8 @@ import { setRuntimeVariable } from '~/actions';
 
 import history from '~/core/history';
 
-const Home = () => <div>home</div>
-const Result = () => <div>result</div>
+const Home = () => <div>home</div>;
+const Result = () => <div>result</div>;
 
 class App extends Component {
 	render() {

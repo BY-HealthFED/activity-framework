@@ -70,11 +70,14 @@ export const  urlLoader = (url: string) => {
 
 /**
  * 检测对象类型
- * @param {Any} Obj 任何检测对象
+ * @param {Any} anyObject 任何检测对象
  * @param {String} type 预判类型
  */
-export const isType = (Obj: any, type: string):boolean => {
-	if (Object.prototype.toString.apply(Obj) === `[object ${type}]`) {
+export const isType = (
+	anyObject: any, 
+	type: 'String' | 'Object' | 'Array' | 'Function' | 'Number' | 'Null' | 'Undefined'
+):boolean => {
+	if (Object.prototype.toString.apply(anyObject) === `[object ${type}]`) {
 		return true;
 	}
 	return false;

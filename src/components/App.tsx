@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setRuntimeVariable } from "~/actions";
 import history from "~/core/history";
-import { isType } from "~/core/helpers";
 import RuntimeDeclare from "~/core/Runtime.d";
 
 interface PropsHome {
